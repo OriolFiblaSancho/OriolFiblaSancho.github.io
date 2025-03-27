@@ -10,6 +10,16 @@
     }
 }
 
+/* Keyframe para la animacion del gradient h2 */
+@keyframes gradientScroll {
+    0% {
+        background-position: 0% 50%; /* Comienza desde la izquierda */
+    }
+    100% {
+        background-position: 100% 50%; /* Termina en la derecha */
+    }
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -18,7 +28,7 @@
 }
 
 body{
-    margin: 5em 10em 10em 10em;
+    margin: 3em 10em 10em 10em;
     background-color: #222;
     color: #fff;
     display: grid;
@@ -34,20 +44,29 @@ body{
 /* Todos los container son invisibles hasta que la animacion de carga se completa */	
 .container{
     opacity: 0;
+    transition: 0.5s;
+}
+
+.container:hover{
+    box-shadow: 0 0 10px #a6ff00;
 }
 
 h2{
     text-align: center;
     margin-bottom: 0.4em;
     font-size: 1.6em;
-    background: linear-gradient(90deg, #00ff88, #ffe600);
+    background: linear-gradient(90deg, #00ff88, #ffe600,#00ff0d, #00ff88,#ffe600, #00ff0d);
+    background-size: 300%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: gradientScroll 5s linear infinite;
 }
 
-#presentation{
-    grid-gap: 10px;
-    padding: 10px;
+/* Container MAIN ------------------*/
+main{
+    opacity: 0;
+    gap: 5em;
+    padding: 1em;
     background-color: #734EF9;
     border-radius: 10px;
     grid-column: 1 / 4;
@@ -55,6 +74,28 @@ h2{
 
     animation: slideDown 1s ease-out forwards;
     animation-delay: 0.1s;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: justify;
+    hyphens: auto;
+}
+
+main img{
+    width: 50em;
+    height: 20em;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+main:hover{
+    box-shadow: 0 0 13px #4916ff;
+}
+
+main img:hover{
+    transform: scale(1.03);
 }
 
 #es_en{
@@ -162,4 +203,10 @@ h2{
 
 #img_tools img:hover{
     transform: scale(1.1);
+}
+
+#apache_icon{
+    background-color: #fff;
+    border-radius: 15%;
+    padding: 0.2em;
 }
