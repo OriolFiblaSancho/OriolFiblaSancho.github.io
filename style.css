@@ -13,14 +13,15 @@
 /* Keyframe para la animacion del gradient h2 */
 @keyframes gradientScroll {
     0% {
-        background-position: 0% 50%; /* Comienza desde la izquierda */
+        background-position: 0% 50%;
     }
     100% {
-        background-position: 90% 50%; /* Termina en la derecha */
+        background-position: 90% 50%;
     }
 }
 
-*{
+/* Estilos generales */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -28,104 +29,134 @@
 }
 
 body {
-    margin: 3rem 10rem 10rem 10rem; /* Cambiado de em a rem */
+    margin: 3rem auto;
     background-color: #222;
     color: #fff;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    column-gap: 2rem; /* Cambiado de em a rem */
-    row-gap: 2rem; /* Cambiado de em a rem */
-
+    
+    /* Definir anchos específicos para columnas */
+    grid-template-columns: 
+        minmax(200px, 1fr)   /* Primera columna */
+        minmax(200px, 1fr)   /* Segunda columna */
+        minmax(200px, 1fr)   /* Tercera columna */
+        minmax(200px, 1fr);  /* Cuarta columna */
+    
+    /* Definir alturas específicas para filas */
+    grid-template-rows: 
+        minmax(250px, auto)  /* Primera fila - más alta para el contenedor principal */
+        minmax(250px, auto)  /* Segunda fila */
+        minmax(250px, auto); /* Tercera fila */
+    
+    column-gap: 2rem;
+    row-gap: 2rem;
     width: 80%;
     min-height: 100vh;
+    padding: 2rem;
 }
 
-/* Todos los container son invisibles hasta que la animacion de carga se completa */	
-.container{
+/* Contenedores generales */
+.container {
     opacity: 0;
     transition: 0.5s;
+    min-height: 150px;
+    max-height: 400px;
+    background-color: #444;
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.container:hover{
+.container:hover {
     box-shadow: 0 0 10px #a6ff00;
 }
 
-h2{
+/* Cabeceras */
+h2 {
     text-align: center;
-    margin-bottom: 0.4em;
-    font-size: 1.6em;
-    background: linear-gradient(90deg, #00ff88, #ffe600,#00ff0d, #00ff88,#ffe600, #00ff0d);
+    margin-bottom: 0.8rem;
+    font-size: 1.6rem;
+    background: linear-gradient(90deg, #00ff88, #ffe600, #00ff0d, #00ff88, #ffe600, #00ff0d);
     background-size: 300%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: gradientScroll 5s linear infinite;
 }
 
-/* Container MAIN reorganizado ------------------*/
+/* Container MAIN - Versión final mejorada */
 main {
     opacity: 0;
-    padding: 4rem 4rem;
-    background: linear-gradient(135deg, #734EF9 0%, #3d1d9e 100%);
-    border-radius: 15px;
+    padding: 2rem;
+    background: linear-gradient(135deg, #734EF9 0%, #4524aa 100%);
+    border-radius: 15px; /* Ligeramente más redondeado */
     grid-column: 1 / 4;
     grid-row: 1 / 3;
-    
-    /* Efecto de sombra */
-    box-shadow: 0 10px 20px rgba(73, 22, 255, 0.2);
-    
-    /* Animación */
-    animation: slideDown 1.2s forwards;
+
+    box-shadow: 0 15px 30px rgba(73, 22, 255, 0.15); /* Sombra más refinada */
+
+    /* Animación suavizada */
+    animation: slideDown 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
     animation-delay: 0.1s;
-    
-    /* Cambiamos a una estructura de columna */
+
     display: flex;
     flex-direction: column;
-    
-    /* Centrado horizontal */
+    justify-content: center;
     align-items: center;
     text-align: justify;
     hyphens: auto;
-    
-    /* Transición */
+    min-height: 400px; /* Ajustado para mejor proporción */
+    max-height: none;
+
     transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.6s ease;
 }
 
-/* Contenedor para la parte superior (texto e imagen) */
+/* Hover del contenedor principal - Simplificado */
+main:hover {
+    box-shadow: 0 0 20px rgba(73, 22, 255, 0.4);
+}
+
+/* Contenido superior - Mejor estructura */
 .top-content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    gap: 2rem;
+    gap: 3rem; /* Más espacio entre texto e imagen */
+    margin-bottom: 1rem; /* Separación del contenido inferior */
 }
 
-/* Restaurado el hover del container main a su estado anterior */
-main:hover {
-    box-shadow: 0 0 13px #4916ff;
+/* Texto del perfil - Refinado */
+#text_profile {
+    flex: 1.5; /* Dar más espacio al texto que a la imagen */
+    padding-top: 2rem;
 }
-
 
 #text_profile h1 {
-    font-size: 2.7rem;
+    font-size: 2.8rem;
     font-weight: 700;
-    margin-bottom: 0.8rem;
-    line-height: 1.1;
+    line-height: 1.2;
+    background: linear-gradient(90deg, #ffffff, #e0e0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.03em; /* Espaciado de letras más ajustado */
 }
 
 #text_profile h3 {
-    font-size: 1.6rem;
+    font-size: 1.4rem; /* Ligeramente más pequeño para mejor jerarquía */
     font-weight: 650;
-    margin-bottom: 1.5rem;
-    color: #a6ff00; /* Color destacado para el subtítulo */
+    margin-bottom: 1.2rem;
+    color: #a6ff00;
 }
 
 #text_profile p {
     font-size: 1.1rem;
     line-height: 1.7;
     margin-bottom: 1.5rem;
-    color: rgba(255, 255, 255, 0.9); /* Ligeramente más suave que blanco puro */
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.01em; /* Mejor legibilidad */
 }
 
 #text_profile b {
@@ -133,28 +164,41 @@ main:hover {
     font-weight: 600;
 }
 
-/* Ajustes para el contenedor de texto para acomodar los botones */
-#text_profile {
-    display: flex;
-    flex-direction: column;
+/* Imagen de perfil - Refinada */
+main img {
+    flex: 1;
+    max-width: 22rem; /* Tamaño más proporcionado */
+    height: auto;
+    border-radius: 15px; /* Bordes más suaves */
+    object-fit: cover;
+    
+    /* Efecto mejorado */
+    border: 3px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    
+    transition: all 0.5s ease;
 }
 
-/* Estilos para los botones en el contenedor main */
+main img:hover {
+    transform: scale(1.03) rotate(4deg); /* Ligera rotación al hacer hover */
+    box-shadow: 0 8px 25px rgba(166, 255, 0, 0.25);
+    border-color: rgba(166, 255, 0, 0.3); /* Borde verde claro al hacer hover */
+}
+
+/* Botones de perfil - Refinados */
 #buttons_profile {
     display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-    /* Centrar los botones horizontalmente */
+    gap: 1.5rem; /* Más espacio entre botones */
+    margin-top: 1.5rem;
     justify-content: center;
-    /* Ancho completo para centrar correctamente */
     width: 100%;
 }
 
 #buttons_profile button {
-    background: none;
+    background: rgba(255, 255, 255, 0.05); /* Fondo sutil */
     border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50%; /* Botones circulares */
-    padding: 0.6rem;
+    border-radius: 50%;
+    padding: 0.8rem; /* Botones ligeramente más grandes */
     cursor: pointer;
     transition: all 0.3s ease;
     display: flex;
@@ -164,170 +208,184 @@ main:hover {
 
 #buttons_profile button:hover {
     border-color: #a6ff00;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(166, 255, 0, 0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(166, 255, 0, 0.2);
+    background: rgba(166, 255, 0, 0.1); /* Fondo sutil al hacer hover */
 }
 
 #buttons_profile button img {
-    width: 2rem;
+    width: 2rem; /* Tamaño ligeramente reducido */
     height: 2rem;
     transition: transform 0.3s ease;
-    border: none; /* Eliminar borde de las imágenes */
-    box-shadow: none; /* Eliminar sombra de las imágenes */
+    border: none;
+    box-shadow: none;
+    filter: brightness(1.2); /* Hacerlos más brillantes */
 }
 
 #buttons_profile button:hover img {
-    transform: scale(1.1); /* Escala la imagen ligeramente al pasar el cursor */
+    transform: scale(1.15);
+    filter: brightness(1.5); /* Aún más brillantes en hover */
 }
 
-/* Cuando la pantalla es pequeña, ajustar la alineación de botones */
-@media (max-width: 768px) {
-    main {
-        padding: 1.5rem;
-    }
-    
-    .top-content {
-        flex-direction: column;
-    }
-    
-    #buttons_profile {
-        margin-top: 1.5rem;
-    }
-}
-
-/* Imagen mejorada pero más pequeña */
-main img {
-    max-width: 22rem; /* Reducido de 28rem a 22rem */
-    height: auto; /* Mantiene las proporciones originales */
-    border-radius: 12px; /* Bordes más suaves */
-    object-fit: cover; /* Asegura que la imagen cubra bien el espacio */
-    
-    /* Efecto de borde brillante */
-    border: 3px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    
-    transition: transform 0.5s ease, box-shadow 0.5s ease, border-color 0.3s ease;
-}
-
-main img:hover {
-    transform: scale(1.03) rotate(5deg); /* Ligera rotación al hacer hover */
-    box-shadow: 0 8px 25px rgba(166, 255, 0, 0.25);
-    border-color: rgba(166, 255, 0, 0.3); /* Borde verde claro al hacer hover */
-}
-
-#es_en{
-    background-color: #444;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    grid-column: 4 / 5;
-    grid-row: 1 / 2;
-
-    animation: slideDown 1s ease-out forwards;
-    animation-delay: 0.2s;
-}
-
-#CV{
-    background-color: #444;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    grid-column: 4 / 5;
-    grid-row: 2 / 3;
-
+/* Contenedor de proyectos */
+#projects {
+    grid-column: 1 / 3;
+    grid-row: 3 / 4;
     animation: slideDown 1s ease-out forwards;
     animation-delay: 0.4s;
 }
 
-
-#projects{
-    background-color: #444;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    grid-column: 3 / 5;
-    grid-row: 3 / 4;
-
+/* Contenedor de herramientas */
+#tools {
+    padding: 1rem 0 0 0;
+    grid-column: 4 / 5;
+    grid-row: 1 / 2;
     animation: slideDown 1s ease-out forwards;
     animation-delay: 0.5s;
+    justify-content: flex-start;
+    min-height: 250px;
 }
-/* Container de tecnologias ------------------------*/
-#lenguages {
-    background-color: #444;
+
+/* Estilizado para herramientas */
+#img_tools {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1.2rem;
     justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    grid-column: 1 / 2;
-    grid-row: 3 / 4;
-    padding: 1rem; /* Cambiado de em a rem */
-
-    animation: slideDown 1s ease-out forwards;
-    animation-delay: 0.5s;
-}
-
-#img_lenguages{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-gap: 10px;
-}
-
-#img_lenguages img{
     width: 100%;
-    height: 100%;
-    transition: 0.5s;
+    margin-top: 0.8rem;
 }
 
-#img_lenguages img:hover{
-    transform: scale(1.1);
+#img_tools img {
+    width: 45px;
+    height: 45px;
+    transition: 0.3s;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
 }
 
-#flask_icon{
+#img_tools img:hover {
+    transform: scale(1.2) translateY(-5px);
+    filter: drop-shadow(0 5px 8px rgba(0,0,0,0.3));
+}
+
+/* Estilo específico para iconos que necesiten fondo */
+#apache_icon {
     background-color: #fff;
     border-radius: 15%;
     padding: 0.2em;
 }
 
-/* Container de herramientas -------------------------*/
+/* Contenedor de tecnologías - Con mejor visualización */
+#lenguages {
+    grid-column: 4 / 5;
+    grid-row: 2 / 4;
+    animation: slideDown 1s ease-out forwards;
+    animation-delay: 0.6s;
+    padding: 1rem;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-start;
+    max-height: none;  
+    overflow-y: auto;
+}
 
-#tools {
-    background-color: #444;
+/* Categorías de tecnologías - Más compactas y horizontales */
+.tech-category {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 0.8rem;
+    transition: all 0.3s ease;
+    margin-bottom: 0.8rem;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    border-radius: 10px;
-    grid-column: 2 / 3;
-    grid-row: 3 / 4;
-    padding: 1rem; /* Cambiado de em a rem */
-
-    animation: slideDown 1s ease-out forwards;
-    animation-delay: 0.5s;
 }
 
-#img_tools{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-gap: 10px;
+.tech-category:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
-#img_tools img{
+.tech-category h3 {
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+    color: #a6ff00;
+    text-align: center;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tech-category h3::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 0.3rem;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.tech-category:nth-child(2) h3::before {
+    background-color: #e34c26;
+}
+
+.tech-category:nth-child(3) h3::before {
+    background-color: #4584b6;
+}
+
+.tech-category:nth-child(4) h3::before {
+    background-color: #13aa52;
+}
+
+/* Grid mejorado para los iconos - Disposición horizontal */
+.tech-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
     width: 100%;
-    height: 100%;
-    transition: 0.2s;
 }
 
-#img_tools img:hover{
-    transform: scale(1.1);
+/* Iconos más grandes y con mejor presentación */
+.tech-grid img {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s ease;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
 }
 
-#apache_icon{
+/* Efecto hover mejorado */
+.tech-grid img:hover {
+    transform: scale(1.2) translateY(-5px);
+    filter: drop-shadow(0 5px 8px rgba(0,0,0,0.3));
+}
+
+/* Añadimos descripción bajo cada icono (opcional) */
+.tech-icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.tech-icon-container span {
+    font-size: 0.7rem;
+    margin-top: 0.3rem;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.tech-icon-container:hover span {
+    opacity: 1;
+}
+
+#flask_icon {
     background-color: #fff;
     border-radius: 15%;
     padding: 0.2em;
