@@ -27,15 +27,15 @@
     font-family: "Montserrat", serif;
 }
 
-body{
-    margin: 3em 10em 10em 10em;
+body {
+    margin: 3rem 10rem 10rem 10rem; /* Cambiado de em a rem */
     background-color: #222;
     color: #fff;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    column-gap: 2em;
-    row-gap: 2em;
+    column-gap: 2rem; /* Cambiado de em a rem */
+    row-gap: 2rem; /* Cambiado de em a rem */
 
     width: 80%;
     min-height: 100vh;
@@ -63,10 +63,10 @@ h2{
 }
 
 /* Container MAIN ------------------*/
-main{
+main {
     opacity: 0;
-    gap: 5em;
-    padding: 1em;
+    gap: 5rem; /* Cambiado de em a rem */
+    padding: 1rem; /* Cambiado de em a rem */
     background-color: #734EF9;
     border-radius: 10px;
     grid-column: 1 / 4;
@@ -83,18 +83,18 @@ main{
     hyphens: auto;
 }
 
-main img{
-    width: 50em;
-    height: 20em;
+main img {
+    width: 50rem; /* Cambiado de em a rem */
+    height: 20rem; /* Cambiado de em a rem */
     border-radius: 10px;
     transition: 0.5s;
 }
 
-main:hover{
+main:hover {
     box-shadow: 0 0 13px #4916ff;
 }
 
-main img:hover{
+main img:hover {
     transform: scale(1.03);
 }
 
@@ -138,7 +138,7 @@ main img:hover{
     animation-delay: 0.5s;
 }
 /* Container de tecnologias ------------------------*/
-#lenguages{
+#lenguages {
     background-color: #444;
     display: flex;
     flex-direction: column;
@@ -147,8 +147,7 @@ main img:hover{
     border-radius: 10px;
     grid-column: 1 / 2;
     grid-row: 3 / 4;
-    padding: 1em;
-
+    padding: 1rem; /* Cambiado de em a rem */
 
     animation: slideDown 1s ease-out forwards;
     animation-delay: 0.5s;
@@ -179,7 +178,7 @@ main img:hover{
 
 /* Container de herramientas -------------------------*/
 
-#tools{
+#tools {
     background-color: #444;
     display: flex;
     flex-direction: column;
@@ -188,7 +187,7 @@ main img:hover{
     border-radius: 10px;
     grid-column: 2 / 3;
     grid-row: 3 / 4;
-    padding: 1em;
+    padding: 1rem; /* Cambiado de em a rem */
 
     animation: slideDown 1s ease-out forwards;
     animation-delay: 0.5s;
