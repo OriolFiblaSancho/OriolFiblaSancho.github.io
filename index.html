@@ -11,21 +11,31 @@
 </head>
 <body>
     <main>
-        <div id="text_profile">
-            <h1>Hola, soy Oriol Fibla</h1>
-            <h3>Desarollador Web</h2>
-            <p>Soy bueno <b>usando HTML, CSS y JavaScript</b>. Siempre estoy buscando algo que aprender así como mejorar en las tecnologías que ya domino.</p>
+        <!-- Nuevo contenedor para agrupar texto e imagen -->
+        <div class="top-content">
+            <div id="text_profile">
+                <h1>Hola,</h1>
+                <h1>soy Oriol Fibla</h1>
+                <h3>Desarollador Web</h3>
+                <p>Se usar <b>HTML, CSS y JavaScript</b>. Siempre estoy buscando algo que aprender así como mejorar en las tecnologías que ya domino. Estoy constantemente buscando nuevos proyectos con los que mejorar y aprender.</p>
+            </div>
+            <img id="img_profile" src="assets/perfil.jpeg" alt="profile_img">
         </div>
-        <img id="img_profile" src="assets/portfolio.webp" alt="profile_img">
+        
+        <!-- Botones ahora fuera del contenedor superior -->
+        <div id="buttons_profile">
+            <a href="https://github.com/OriolFiblaSancho">
+                <button id="github_button"><img src="assets/github-button.svg"></button>
+            </a>
+            <a>
+                <button id="linkedin_button"><img src="assets/linkedin-button.svg"></button>
+            </a>
+            <a>
+                <button id="cv_button"><img src="assets/cv-button.png"></button>
+            </a>
+        </div>
     </main>
 
-    <div class="container" id="es_en">
-        <h1>ES/EN</h1>
-    </div>
-
-    <div class="container" id="CV">
-        <h1>CV</h1>
-    </div>
 
     <div class="container" id="projects">
         <h1>Projects</h1>
