@@ -16,7 +16,7 @@
         background-position: 0% 50%; /* Comienza desde la izquierda */
     }
     100% {
-        background-position: 100% 50%; /* Termina en la derecha */
+        background-position: 90% 50%; /* Termina en la derecha */
     }
 }
 
@@ -169,6 +169,12 @@ main img:hover{
 
 #img_lenguages img:hover{
     transform: scale(1.1);
+}
+
+#flask_icon{
+    background-color: #fff;
+    border-radius: 15%;
+    padding: 0.2em;
 }
 
 /* Container de herramientas -------------------------*/
