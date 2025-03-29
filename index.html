@@ -15,12 +15,14 @@
         <!-- Nuevo contenedor para agrupar texto e imagen -->
         <div class="top-content">
             <div id="text_profile">
-                <h1>👋 Hola,</h1>
-                <h1>soy Oriol Fibla</h1>
+                <h1><span id="waving-hand">👋</span> Hola, soy</h1>
+                <h1><b>Oriol Fibla Sancho</b></h1>
                 <h3 id="job-title" data-value="Desarrollador Web"></h3>
-                <p>Enfocado en desarrollo frontend con <b>HTML</b>, <b>CSS</b> y <b>JavaScript</b>. Siempre estoy buscando algo que aprender así como mejorar en las tecnologías que ya domino. Estoy constantemente buscando nuevos proyectos con los que mejorar y aprender.</p>
+                <p>Enfocado en desarrollo frontend con <b>HTML</b>, <b>CSS</b> y <b>JavaScript</b>. Siempre buscando algo que aprender así como mejorar en las tecnologías que ya domino. Estoy constantemente trabajando en nuevos proyectos con los que mejorar y aprender.</p>
             </div>
-            <img id="img_profile" src="assets/perfil.jpeg" alt="profile_img">
+            <div class="profile-image-container">
+                <img src="assets/perfil.jpeg" alt="Foto de perfil">
+            </div>
         </div>
         
         <!-- Botones ahora fuera del contenedor superior -->
@@ -31,16 +33,73 @@
             <a>
                 <button id="linkedin_button"><img src="assets/linkedin-button.svg"></button>
             </a>
-            <a>
-                <button id="cv_button"><img src="assets/cv-button.png"></button>
-            </a>
         </div>
     </main>
 
 
     <div class="container" id="projects">
-        <h1>Projects</h1>
+        <h2>Proyectos</h2>
+        
+        <div class="projects-container">
+            <!-- Primer proyecto -->
+            <div class="project-card">
+                <a href="https://github.com/OriolFiblaSancho/catinder">
+                    <img src="assets/catinder.png" alt="Catinder">
+                    <h3>Catinder</h3>
+                </a>
+            </div>
+            
+            <!-- Segundo proyecto -->
+            <div class="project-card">
+                <a href="https://github.com/OriolFiblaSancho/paint">
+                    <img src="assets/paint.png" alt="Paint in JS">
+                    <h3>Old Paint</h3>
+                </a>
+                
+            </div>
+
+            <div class="project-card">
+                <a href="https://github.com/OriolFiblaSancho/font_picker">
+                    <img src="assets/fontpicker.png" alt="Fontpicker">
+                    <h3>Fontpicker</h3>
+                </a>
+            </div>
+
+            <div class="project-card">
+                <a href="https://github.com/OriolFiblaSancho/take_a_break">
+                    <img src="assets/takeAbreak.png" alt="takeAbreak">
+                    <h3>Take a break</h3>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Botón Ver más -->
+        <div class="view-more">
+            <a href="proyectos.html">Ver más</a>
+        </div>
     </div>
+
+    <div id="CV" class="container">
+        <h2>Mi Currículum</h2>
+        <div class="cv-images">
+            <div class="cert-container">
+                <img src="assets/mongodb_certificate.png" alt="CV" class="cv-image">
+            </div>
+            <div class="cert-container">
+                <img src="assets/github_certification.png" alt="CV" class="cv-image">
+            </div>
+        </div>
+        
+        <div class="cv-buttons">
+            <a href="path/to/view-cv" class="cv-button cv-view">
+                Ver CV
+            </a>
+            <a href="path/to/download-cv" class="cv-button cv-download" download>
+                Descargar
+            </a>
+        </div>
+    </div>
+    
 
     <div class="container" id="lenguages">
         <h2>Tecnologías</h2>
@@ -84,9 +143,31 @@
             <img id="wordpress_icon" src="assets/wordpress.svg" alt="wordpress_icon" title="WordPress">
         </div>
     </div>
+
+    <div class="container" id="contact">
+        <h3>Contactame:</h3>
+        <div class="email-container">
+            <span class="email-text">oriolfibla@iesmontsia.org</span>
+            <button class="copy-button" onclick="copyEmail()">Copy</button>
+        </div>
+    </div>
+
+    <div class="container" id="github-calendar">
+        <h3>Github Calendar</h3>
+    </div>
+
+    <div class=container id="about_me">
+        <h3>Sobre mí</h3>
+    </div>
+
+    <div class="container" id="education">
+        <h3>Educación</h3>
+    </div>
 </body>
 </html>
 
 <!-- TO DO -->
-<!-- Cambiar orden de animacion de carga -->
-<!-- Mirar qeu todo este en orden al cambiar de pantallas-->
+<!-- Responsive design -->
+<!-- Github Calendar -->
+<!-- Educacion -->
+<!-- About me -->

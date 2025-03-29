@@ -2,8 +2,6 @@
 const titles = [
   "Desarrollador Web",
   "Frontend Developer",
-  "Creador de Experiencias",
-  "Diseñador de Interfaces",
   "Programador JavaScript"
 ];
 
@@ -88,3 +86,15 @@ function startAnimation() {
 
 // Inicia la animación 1 segundo después de cargar la página
 setTimeout(startAnimation, 1000);
+
+function copyEmail() {
+  const email = document.querySelector('.email-text').textContent;
+  navigator.clipboard.writeText(email).then(() => {
+      const button = document.querySelector('.copy-button');
+      const originalText = button.textContent;
+      button.textContent = 'Copied!';
+      setTimeout(() => {
+          button.textContent = originalText;
+      }, 2000);
+  });
+}

@@ -1,4 +1,27 @@
-/* ===== ANIMACIONES ===== */
+/* =============================================================================
+   TABLA DE CONTENIDOS
+   =============================================================================
+   1. ANIMACIONES Y KEYFRAMES
+   2. ESTILOS GENERALES Y RESET
+   3. LAYOUT PRINCIPAL
+   4. SECCIÓN DE PERFIL
+      4.1. Contenido superior
+      4.2. Texto del perfil
+      4.3. Imagen de perfil
+      4.4. Botones de perfil
+   5. SECCIONES DE CONTENIDO
+      5.1. Herramientas
+      5.2. Tecnologías
+      5.3. Proyectos
+      5.4. Currículum
+   6. COMPONENTES REUTILIZABLES
+   7. MEDIA QUERIES
+============================================================================= */
+
+/* =============================================================================
+   1. ANIMACIONES Y KEYFRAMES
+============================================================================= */
+
 @keyframes slideDown {
     from {
         opacity: 0;
@@ -11,21 +34,60 @@
 }
 
 @keyframes gradientScroll {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 90% 50%; }
+}
+
+@keyframes shine {
     0% {
-        background-position: 0% 50%;
+        left: -150%;
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.5;
     }
     100% {
-        background-position: 90% 50%;
+        left: 150%;
+        opacity: 0;
     }
 }
 
-/* ===== ESTILOS GENERALES ===== */
+@keyframes wave {
+    0% { transform: rotate(0deg); }
+    10% { transform: rotate(14deg); }
+    20% { transform: rotate(-8deg); }
+    30% { transform: rotate(14deg); }
+    40% { transform: rotate(-4deg); }
+    50% { transform: rotate(10deg); }
+    60% { transform: rotate(0deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@keyframes certificateShine {
+    0% {
+        left: -100%;
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.3;
+    }
+    100% {
+        left: 100%;
+        opacity: 0;
+    }
+}
+
+/* =============================================================================
+   2. ESTILOS GENERALES Y RESET
+============================================================================= */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Montserrat", serif;
 }
+
 html {
     display: flex;
     justify-content: center;
@@ -33,38 +95,21 @@ html {
 }
 
 body {
+    overflow-x: hidden;
     margin-top: 50px;
     background-color: #222;
     color: #fff;
     display: grid;
-    grid-template-columns: 300px 300px 300px 300px;  /* valores fijos en lugar de 1fr */
-    grid-template-rows: 250px 250px 250px 250px;  /* valores fijos en lugar de 1fr */
-    column-gap: 32px;  /* cambiado de 2rem */
-    row-gap: 32px;  /* cambiado de 2rem */
+    grid-template-columns: 300px 300px 300px 300px;
+    grid-template-rows: 250px 250px 250px 250px 250px 250px 250px;
+    column-gap: 32px;
+    row-gap: 32px;
 }
-
-/* Componentes generales reusables */
-.container {
-    opacity: 0;
-    transition: 0.5s;
-    min-height: 150px;
-    max-height: 400px;
-    background-color: #444;
-    border-radius: 10px;
-    padding: 16px;  /* cambiado de 1rem */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-    .container:hover {
-        box-shadow: 0 0 10px #a6ff00;
-    }
 
 h2 {
     text-align: center;
-    margin-bottom: 13px;  /* cambiado de 0.8rem */
-    font-size: 26px;  /* cambiado de 1.6rem */
+    margin-bottom: 13px;
+    font-size: 26px;
     background: linear-gradient(90deg, #00ff88, #ffe600, #00ff0d, #00ff88, #ffe600, #00ff0d);
     background-size: 300%;
     -webkit-background-clip: text;
@@ -74,11 +119,39 @@ h2 {
     animation: gradientScroll 5s linear infinite;
 }
 
-/* ===== SECCIÓN PRINCIPAL ===== */
+/* Componente reutilizable para contenedores */
+.container {
+    opacity: 0;
+    transition: 0.5s;
+    min-height: 250px;
+    background-color: #444;
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+    .container:hover {
+        box-shadow: 0 0 10px #a6ff00;
+    }
+
+/* Elemento de saludo animado */
+#waving-hand {
+    display: inline-block;
+    animation: wave 2.5s ease-in-out infinite;
+    transform-origin: 70% 70%;
+}
+
+/* =============================================================================
+   3. SECCIÓN DE PERFIL
+============================================================================= */
+
 main {
     opacity: 0;
     padding: 2rem;
-    background: linear-gradient(135deg, #330f9e 0%,  #5d3bd8 100%);
+    background: linear-gradient(135deg, #330f9e 0%, #5d3bd8 100%);
     border-radius: 15px;
     grid-column: 1 / 4;
     grid-row: 1 / 3;
@@ -95,120 +168,175 @@ main {
     max-height: none;
     transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.6s ease;
 }
+
     main:hover {
         box-shadow: 0 0 30px rgba(73, 22, 255, 0.4);
     }
 
-    /* Contenido superior */
-    .top-content {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        gap: 48px; /* cambiado de 3rem */
-        margin-bottom: 16px; /* cambiado de 1rem */
+/* 3.1. Contenido superior */
+.top-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 48px;
+    margin-bottom: 16px;
+}
+
+/* 3.2. Texto del perfil */
+#text_profile {
+    flex: 1.5;
+    padding-top: 32px;
+}
+
+    #text_profile h1 {
+        font-size: 45px;
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -0.03em;
     }
 
-        /* Texto del perfil */
-        #text_profile {
-            flex: 1.5;
-            padding-top: 32px; /* cambiado de 2rem */
-        }
-            #text_profile h1 {
-                font-size: 45px; /* cambiado de 2.8rem */
-                font-weight: 700;
-                line-height: 1.2;
-                
-                letter-spacing: -0.03em;
-            }
+    #text_profile h1 b {
+        background: linear-gradient(90deg, #ffce2b, #ff6600, #ffce2b, #ff6600, #ffce2b, #ff6600);
+        background-size: 200%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+        animation: gradientScroll 4s linear infinite;
+        font-weight: 700;
+        text-shadow: 0px 3px 8px rgba(255, 150, 0, 0.3);
+    }
 
-            #text_profile h3 {
-                min-height: 30px;
-                font-size: 22px; /* cambiado de 1.4rem */
-                font-weight: 650;
-                margin-bottom: 19px; /* cambiado de 1.2rem */
-                background: linear-gradient(90deg, #00ff88, #ffe600, #00ff0d, #00ff88, #ffe600, #00ff0d);
-                background-size: 300%;
-                -webkit-background-clip: text;
-                background-clip: text;
-                color: transparent;
-                -webkit-text-fill-color: transparent;
-                animation: gradientScroll 5s linear infinite;
-                text-transform: uppercase;
-                white-space: nowrap;
-            }
+    #text_profile h3 {
+        min-height: 30px;
+        font-size: 22px;
+        font-weight: 650;
+        margin-bottom: 19px;
+        background: linear-gradient(90deg, #00ff88, #ffe600, #00ff0d, #00ff88, #ffe600, #00ff0d);
+        background-size: 300%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        -webkit-text-fill-color: transparent;
+        animation: gradientScroll 5s linear infinite;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
 
-            #text_profile p {
-                font-size: 18px; /* cambiado de 1.1rem */
-                line-height: 1.7;
-                margin-bottom: 24px; /* cambiado de 1.5rem */
-                color: rgba(255, 255, 255, 0.9);
-                letter-spacing: 0.01em;
-            }
+    #text_profile p {
+        font-size: 18px;
+        line-height: 1.7;
+        margin-bottom: 24px;
+        color: rgba(255, 255, 255, 0.9);
+        letter-spacing: 0.01em;
+    }
 
-            #text_profile b {
-                color: #a6ff00;
-                font-weight: 600;
-            }
+    #text_profile b {
+        color: #a6ff00;
+        font-weight: 600;
+    }
 
-        /* Imagen de perfil */
-        main img {
-            flex: 1;
-            max-width: 22rem;
-            height: auto;
-            border-radius: 15px;
-            object-fit: cover;
-            border: 3px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            transition: all 0.5s ease;
-        }
-            main img:hover {
-                transform: scale(1.03) rotate(4deg);
-                box-shadow: 0 8px 25px rgba(166, 255, 0, 0.25);
-                border-color: rgba(166, 255, 0, 0.3);
-            }
+/* 3.3. Imagen de perfil */
+.profile-image-container {
+    flex: 1;
+    position: relative;
+    max-width: 22rem;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: 0.5s;
+}
 
-    /* Botones de perfil */
-    #buttons_profile {
+    .profile-image-container img {
+        width: 100%;
+        height: auto;
+        border-radius: 15px;
+        object-fit: cover;
+        border: 3px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        transition: all 0.5s ease;
+    }
+    
+    .profile-image-container:hover img {
+        box-shadow: 0 8px 25px rgba(166, 255, 0, 0.25);
+        border-color: rgba(166, 255, 0, 0.3);
+    }
+
+    .profile-image-container:hover {
+        transform: scale(1.03) rotate(4deg);
+    }
+    
+    .profile-image-container::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -120%;
+        z-index: 2;
+        width: 80%;
+        height: 200%;
+        background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.1) 77%,
+            rgba(255, 255, 255, 0.4) 92%,
+            rgba(255, 255, 255, 0) 100%
+        );
+        transform: rotate(30deg);
+        pointer-events: none;
+    }
+    
+    .profile-image-container:hover::before {
+        animation: shine 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+/* 3.4. Botones de perfil */
+#buttons_profile {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    justify-content: center;
+    width: 100%;
+}
+
+    #buttons_profile button {
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        padding: 0.8rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
         display: flex;
-        gap: 1.5rem;
-        margin-top: 1.5rem;
         justify-content: center;
-        width: 100%;
+        align-items: center;
     }
-        #buttons_profile button {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            padding: 0.8rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-            #buttons_profile button:hover {
-                border-color: #a6ff00;
-                transform: translateY(-5px);
-                box-shadow: 0 10px 20px rgba(166, 255, 0, 0.2);
-                background: rgba(166, 255, 0, 0.1);
-            }
 
-        #buttons_profile button img {
-            width: 2rem;
-            height: 2rem;
-            transition: transform 0.3s ease;
-            border: none;
-            box-shadow: none;
-            filter: brightness(1.2);
+        #buttons_profile button:hover {
+            border-color: #a6ff00;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(166, 255, 0, 0.2);
+            background: rgba(166, 255, 0, 0.1);
         }
-            #buttons_profile button:hover img {
-                transform: scale(1.15);
-                filter: brightness(1.5);
-            }
 
-/* ===== HERRAMIENTAS ===== */
+    #buttons_profile button img {
+        width: 2rem;
+        height: 2rem;
+        transition: transform 0.3s ease;
+        border: none;
+        box-shadow: none;
+        filter: brightness(1.2);
+    }
+
+        #buttons_profile button:hover img {
+            transform: scale(1.15);
+            filter: brightness(1.5);
+        }
+
+/* =============================================================================
+   4. SECCIONES DE CONTENIDO
+============================================================================= */
+
+/* 4.1. Herramientas */
 #tools {
     padding: 1rem 0 0 0;
     grid-column: 4 / 5;
@@ -218,14 +346,16 @@ main {
     justify-content: flex-start;
     min-height: 250px;
 }
+
     #img_tools {
-        display: grid; /* Changed from flex to grid */
-        grid-template-columns: repeat(3, 1fr); /* Limit to 3 icons per row */
-        gap: 1.2rem; /* Maintain spacing between icons */
-        justify-items: center; /* Center icons within their grid cells */
-        width: 90%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.2rem;
+        justify-items: center;
+        width: 75%;
         margin-top: 0.8rem;
     }
+
         #img_tools img {
             width: 45px;
             height: 45px;
@@ -233,6 +363,7 @@ main {
             object-fit: contain;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
         }
+
             #img_tools img:hover {
                 transform: scale(1.2) translateY(-5px);
                 filter: drop-shadow(0 5px 8px rgba(0,0,0,0.3));
@@ -250,7 +381,7 @@ main {
         border-radius: 15%;
     }
 
-/* ===== TECNOLOGÍAS ===== */
+/* 4.2. Tecnologías */
 #lenguages {
     grid-column: 4 / 5;
     grid-row: 2 / 4;
@@ -263,6 +394,7 @@ main {
     max-height: none;  
     overflow-y: auto;
 }
+
     /* Categorías de tecnologías */
     .tech-category {
         background-color: rgba(0, 0, 0, 0.2);
@@ -275,6 +407,7 @@ main {
         flex-direction: column;
         align-items: center;
     }
+
         .tech-category:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -291,6 +424,7 @@ main {
             align-items: center;
             justify-content: center;
         }
+
             .tech-category h3::before {
                 content: '';
                 display: inline-block;
@@ -321,6 +455,7 @@ main {
         width: 100%;
         justify-items: center;
     }
+
         .tech-grid img {
             width: 40px;
             height: 40px;
@@ -328,6 +463,7 @@ main {
             object-fit: contain;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
         }
+
             .tech-grid img:hover {
                 transform: scale(1.2) translateY(-5px);
                 filter: drop-shadow(0 5px 8px rgba(0,0,0,0.3));
@@ -340,12 +476,14 @@ main {
         align-items: center;
         text-align: center;
     }
+
         .tech-icon-container span {
             font-size: 0.7rem;
             margin-top: 0.3rem;
             opacity: 0.8;
             transition: opacity 0.3s ease;
         }
+
             .tech-icon-container:hover span {
                 opacity: 1;
             }
@@ -357,10 +495,328 @@ main {
         padding: 0.2em;
     }
 
-/* ===== PROYECTOS ===== */
+/* 4.3. Proyectos */
 #projects {
     grid-column: 1 / 3;
-    grid-row: 3 / 4;
+    grid-row: 3 / 5;
     animation: slideDown 1s ease-out forwards;
     animation-delay: 0.8s;
+    position: relative;
+    padding: 1.5rem;
+    max-height: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+    /* Contenedor para las tarjetas de proyectos */
+    #projects .projects-container {
+        display: flex;
+        justify-content: space-between;
+        gap: 1.5rem;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    /* Tarjetas de proyectos */
+    .project-card {
+        margin-top: 10px;
+        flex: 1;
+        min-width: 200px;
+        max-width: calc(50% - 1rem);
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        display: flex;
+        flex-direction: column;
+    }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(166, 255, 0, 0.2);
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-bottom: 2px solid rgba(166, 255, 0, 0.3);
+        }
+
+        .project-card h3 {
+            padding: 0.8rem;
+            text-align: center;
+            font-size: 1.1rem;
+            color: #fff;
+            margin: 0;
+        }
+
+    /* Botón Ver más */
+    .view-more {
+        margin-top: 1rem;
+        align-self: center;
+    }
+
+        .view-more a {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+            .view-more a:hover {
+                background: rgba(166, 255, 0, 0.1);
+                border-color: #a6ff00;
+                transform: translateY(-3px);
+                box-shadow: 0 5px 15px rgba(166, 255, 0, 0.2);
+            }
+
+/* 4.4. Currículum */
+#CV {
+    grid-column: 3 / 4;
+    grid-row: 3 / 4;
+    animation: slideDown 1s ease-out forwards;
+    animation-delay: 1s;
+    position: relative;
+    text-align: center;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+    /* Contenedor para las certificaciones */
+    .cv-images {
+        display: flex;
+        flex-direction: row;
+        gap: 2.2rem;
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Contenedor para cada certificación */
+    .cert-container {
+        width: 40%;
+        position: relative;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+    }
+
+        .cert-container:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 8px 16px rgba(166, 255, 0, 0.2);
+        }
+
+        /* Estilo para cada certificación */
+        .cv-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            filter: brightness(0.9);
+        }
+
+        .cert-container:hover .cv-image {
+            border-color: rgba(166, 255, 0, 0.4);
+            filter: brightness(1);
+}
+
+        /* Efecto de brillo con pseudo-elemento en el contenedor */
+        .cert-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.1) 77%,
+                rgba(255, 255, 255, 0.3) 92%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: skewX(-25deg);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .cert-container:hover::before {
+            animation: certificateShine 1s ease-in-out;
+        }
+
+    /* Estilos para los botones */
+    .cv-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+        .cv-button {
+            padding: 0.8rem 1.2rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 120px;
+        }
+
+            /* View CV button - different styling */
+            .cv-view {
+                background: rgba(255, 255, 255, 0.05);
+                border: 2px solid rgba(255, 255, 255, 0.2);
+                color: #fff;
+            }
+
+                .cv-view:hover {
+                    background: rgba(166, 255, 0, 0.1);
+                    border-color: #a6ff00;
+                    transform: translateY(-3px);
+                    box-shadow: 0 5px 15px rgba(166, 255, 0, 0.2);
+                }
+
+            /* Download CV button - different styling */
+            .cv-download {
+                background: rgba(166, 255, 0, 0.2);
+                border: 2px solid #a6ff00;
+                color: #fff;
+            }
+
+                .cv-download:hover {
+                    background: rgba(166, 255, 0, 0.3);
+                    transform: translateY(-3px);
+                    box-shadow: 0 5px 15px rgba(166, 255, 0, 0.3);
+                }
+/* Contactar */
+#contact{
+    grid-column: 3 / 5;
+    grid-row: 4 / 5;
+    background: linear-gradient(135deg, #330f9e 0%, #5d3bd8 100%);
+    animation: slideDown 1s ease-out forwards;
+    animation-delay: 1.2s;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 0px 15px rgba(73, 22, 255, 0.15);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+    #contact:hover {
+        box-shadow: 0 0 30px rgba(73, 22, 255, 0.4);
+    }
+
+    #contact h3 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: #fff;
+        background: none;
+    }
+
+    .email-container {
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        padding: 15px;
+        margin: 15px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 470px;
+        transition: all 0.3s ease;
+    }
+
+        .email-container:hover {
+            border-color: #a6ff00;
+            background: rgba(166, 255, 0, 0.1);
+            transform: translateY(-3px);
+        }
+
+    .email-text {
+        font-size: 1.5rem;
+        color: #fff;
+        margin-right: 10px;
+    }
+
+    .copy-button {
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        border-radius: 6px;
+        padding: 8px 12px;
+        color: #fff;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1.5rem;
+    }
+
+        .copy-button:hover {
+            background: rgba(166, 255, 0, 0.2);
+            border-color: #a6ff00;
+            box-shadow: 0 5px 15px rgba(166, 255, 0, 0.2);
+        }
+
+        .copy-button:active {
+            transform: scale(0.95);
+        }
+
+/* 4.5 Sobre mi */
+#about_me {
+    grid-column: 2 / 5;
+    grid-row: 5 / 7;
+    animation: slideDown 1s ease-out forwards;
+    animation-delay: 1.4s;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 0px 15px rgba(73, 22, 255, 0.15);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+    #about-me:hover {
+        box-shadow: 0 0 30px rgba(73, 22, 255, 0.4);
+    }
+
+/* 4.6 Educacion */
+#education {
+    grid-column: 1 / 2;
+    grid-row: 5 / 7;
+    animation: slideDown 1s ease-out forwards;
+    animation-delay: 1.6s;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 0px 15px rgba(73, 22, 255, 0.15);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
