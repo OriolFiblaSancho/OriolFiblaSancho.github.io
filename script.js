@@ -2,7 +2,8 @@
 const titles = [
   "Desarrollador Web",
   "Frontend Developer",
-  "Programador JavaScript"
+  "Programador JavaScript",
+  "Resolvedor de Problemas"
 ];
 
 const jobTitle = document.querySelector("#job-title");
@@ -92,7 +93,7 @@ function copyEmail() {
   navigator.clipboard.writeText(email).then(() => {
       const button = document.querySelector('.copy-button');
       const originalText = button.textContent;
-      button.textContent = 'Copied!';
+      button.textContent = 'Copiado!';
       setTimeout(() => {
           button.textContent = originalText;
       }, 2000);
