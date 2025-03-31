@@ -38,6 +38,11 @@
     100% { background-position: 90% 50%; }
 }
 
+@keyframes gradientScrollTimeline {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 80% 50%; }
+}
+
 @keyframes shine {
     0% {
         left: -150%;
@@ -82,7 +87,7 @@
         transform: translateX(0);
     }
     100% {
-        transform: translateX(-168%);
+        transform: translateX(-196%);
     }
 }
 
@@ -116,9 +121,14 @@ html {
 }
 
 body {
+    background-color: #121212; /* Dark base color */
+    background-image: url(/assets/noise.gif);
+    background-blend-mode: overlay; /* This blends the noise with the background color */
+    background-size: 200px; /* Optional: control the size of the noise pattern */
+    opacity: 1; /* Control the overall opacity */
     overflow-x: hidden;
     margin-top: 50px;
-    background-color: #222;
+    
     color: #fff;
     display: grid;
     grid-template-columns: 300px 300px 300px 300px;
@@ -202,7 +212,6 @@ main {
     align-items: center;
     width: 100%;
     gap: 48px;
-    margin-bottom: 16px;
 }
 
 /* 3.2. Texto del perfil */
@@ -315,7 +324,7 @@ main {
 #buttons_profile {
     display: flex;
     gap: 1.5rem;
-    margin-top: 1.5rem;
+    margin-bottom: 2rem;
     justify-content: center;
     width: 100%;
 }
@@ -363,10 +372,11 @@ main {
     grid-column: 3 / 4;
     grid-row: 3 / 4;
     animation: slideDown 1s ease-out forwards;
-    animation-delay: 0.4s;
+    animation-delay: 0.8s;
     justify-content: flex-start;
     min-height: 250px;
     overflow: hidden; /* Hide overflow to create sliding effect */
+    border-radius: 15px;
 }
     #tools h2{
        margin: 0;
@@ -388,11 +398,6 @@ main {
             animation: slideTools 10s infinite linear;
         }
 
-            #img_tools:hover {
-                /* Pause on hover */
-                animation-play-state: paused;
-            }
-
             /* Tool tooltip styling */
             #img_tools .tool-item {
                 position: relative;
@@ -410,15 +415,26 @@ main {
                 margin: 0;
             }
 
-            #img_tools .tool-item img:hover{
+            /* Add the pause animation only when hovering the image */
+            #img_tools .tool-item img:hover {
                 transform: scale(1.1) translateY(-15px);
                 filter: drop-shadow(0 5px 8px rgba(166, 255, 0, 0.4));
+            }
+
+            /* Use this more specific selector to pause only when hovering on images */
+            #tools .slider-container #img_tools .tool-item:hover img {
+                animation-play-state: paused;
+            }
+
+            /* This is the key fix - we need to pause the parent animation when hover on img */
+            #tools .slider-container:has(.tool-item img:hover) #img_tools {
+                animation-play-state: paused;
             }
 
             #img_tools .tool-name {
                 position: absolute;
                 bottom: -30px;
-                background: rgba(0, 0, 0, 0.7);
+                background: #222;
                 color: #a6ff00;
                 padding: 4px 8px;
                 border-radius: 4px;
@@ -428,11 +444,11 @@ main {
                 transform: translateY(10px);
                 transition: opacity 0.3s, transform 0.3s;
                 white-space: nowrap;
+                pointer-events: none; /* This prevents the tooltip from interfering with hover */
             }
 
             #img_tools .tool-item img:hover + .tool-name {
                 animation: tooltipFadeIn 0.3s forwards;
-                
             }
 
     .slider-container::before,
@@ -468,6 +484,7 @@ main {
     justify-content: flex-start;
     max-height: none;  
     overflow-y: auto;
+    border-radius: 15px;
 }
 
     /* Categorías de tecnologías */
@@ -584,6 +601,7 @@ main {
     justify-content: flex-start;
     width: 100%;
     box-sizing: border-box;
+    border-radius: 15px;
 }
 
     /* Contenedor para las tarjetas de proyectos */
@@ -661,13 +679,14 @@ main {
     grid-column: 4/ 5;
     grid-row: 1 / 2;
     animation: slideDown 1s ease-out forwards;
-    animation-delay: 1s;
+    animation-delay: 0.4s;
     position: relative;
     text-align: center;
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    border-radius: 15px;
 }
 
     /* Contenedor para las certificaciones */
@@ -692,7 +711,6 @@ main {
     }
 
         .cert-container:hover {
-            transform: translateY(-5px) scale(1.03);
             box-shadow: 0 8px 16px rgba(166, 255, 0, 0.2);
         }
 
@@ -788,7 +806,7 @@ main {
     grid-row: 6 / 7;
     background: linear-gradient(135deg, #330f9e 0%, #5d3bd8 100%);
     animation: slideDown 1s ease-out forwards;
-    animation-delay: 1.2s;
+    animation-delay: 1.4s;
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
@@ -821,7 +839,7 @@ main {
         align-items: center;
         justify-content: space-between;
         width: 100%;
-        max-width: 470px;
+        max-width: 500px;
         transition: all 0.3s ease;
     }
 
@@ -863,35 +881,250 @@ main {
     grid-column: 3 / 5;
     grid-row: 4 / 7;
     animation: slideDown 1s ease-out forwards;
-    animation-delay: 1.4s;
+    animation-delay: 1s;
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: start;
     text-align: center;
     border-radius: 15px;
-    box-shadow: 0 0px 15px rgba(73, 22, 255, 0.15);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
-    #about-me:hover {
-        box-shadow: 0 0 30px rgba(73, 22, 255, 0.4);
+    #about_me h2 {
+        margin-bottom: 2rem;
+        font-size: 2rem;
+        position: relative;
+        display: inline-block;
+        align-self: center;
+        padding-bottom: 0.5rem;
     }
+
+    #about_me h2::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, #a6ff00, transparent);
+    }
+
+    #about_me img{
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        border: #5d3bd8 5px solid;
+        box-shadow: #330f9e 0px 0px 20px;
+        margin-bottom: 2rem;
+        transition: all 0.3s ease;
+        transform-style: preserve-3d;
+        perspective: 1000px;
+    }
+
+    #about_me .flipper {
+        position: relative;
+        width: 250px; 
+        height: 250px;
+        perspective: 1000px;
+        margin-bottom: 2rem;
+    }
+
+    #about_me .front,
+    #about_me .back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        border-radius: 50%;
+        transition: transform 0.8s ease;
+        box-shadow: #330f9e 0px 0px 20px;
+    }
+
+    #about_me .front {
+        transform: rotateY(0deg);
+    }
+
+    #about_me .back {
+        transform: rotateY(180deg);
+        background: linear-gradient(135deg, #330f9e 0%, #5d3bd8 100%);
+        width: 100%;
+        height: 100%;
+    }
+
+    #about_me .flipper:hover .front {
+        transform: rotateY(180deg);
+    }
+
+    #about_me .flipper:hover .back {
+        transform: rotateY(0deg);
+    }
+
+    #about_me p{
+        font-size: 1.2rem;
+        line-height: 1.5;
+        margin-bottom: 1.2rem;
+        text-align: justify;
+        hyphens: auto;
+    }
+
+    #about_me b{
+        color: #00ff0d;
+        font-weight: 600;
+    }
+
 
 /* 4.6 Educacion */
 #education {
     grid-column: 1 / 3;
     grid-row: 5 / 6;
     animation: slideDown 1s ease-out forwards;
-    animation-delay: 1.6s;
+    animation-delay: 1.2s;
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: start;
     text-align: center;
     border-radius: 15px;
     box-shadow: 0 0px 15px rgba(73, 22, 255, 0.15);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+    #education:hover {
+        box-shadow: 0 0px 10px #a6ff00;
+    }
+
+#education h2 {
+    margin: 0;
+    position: relative;
+    display: inline-block;
+    align-self: center;
+}
+
+/* Horizontal timeline container */
+#education .education-container {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    padding: 0;
+    width: 100%;
+}
+
+/* Timeline horizontal bar - mejorado */
+#education .education-container::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 90px;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(to right, #330f9e, #735bdb, #330f9e, #735bdb, #330f9e, #735bdb);
+    border-radius: 4px;
+    z-index: 0;
+    box-shadow: 0 0 10px rgba(93, 59, 216, 0.5);
+    animation: gradientScrollTimeline 4s linear infinite;
+    background-size: 200%;
+}
+
+/* Education items container - now horizontal */
+.education-items {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+}
+
+/* Education item */
+.education-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Adjust based on number of items */
+    position: relative;
+    margin: 0 5px;
+}
+
+/* Timeline dot - mejorado */
+.education-item::before {
+    content: "";
+    position: absolute;
+    top: 92px;
+    width: 16px;
+    height: 16px;
+    background: #a6ff00;
+    border: 3px solid #330f9e;
+    border-radius: 50%;
+    z-index: 1;
+    box-shadow: 0 0 12px rgba(166, 255, 0, 0.6);
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+}
+
+.education-item:hover::before {
+    transform: translateY(-50%) scale(1.2);
+    box-shadow: 0 0 18px rgba(166, 255, 0, 0.8);
+}
+
+/* Education content - alternate above/below the timeline */
+.education-content {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    margin-top: 35px; /* Space from the timeline */
+}
+
+.education-item:nth-child(odd) .education-content {
+    margin-top: 55px; /* Place below timeline */
+}
+
+.education-item:nth-child(even) .education-content {
+    margin-top: 0; /* Place above timeline */
+    margin-bottom: 55px;
+}
+
+.education-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(166, 255, 0, 0.2);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* Education title */
+.education-title {
+    padding-bottom: 0.6rem;
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+    font-size: 1.1rem;
+    color: #a6ff00;
+    margin: 0.5rem;
+    font-weight: 600;
+}
+
+/* Institution name */
+.institution {
+    font-size: 0.9rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    padding-top: 1rem;
+}
+
+/* Education date period */
+.education-date {
+    font-size: 0.8rem;
+    background: linear-gradient(90deg, #00ff88, #ffe600,#00ff88, #ffe600);
+    background-size: 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: gradientScroll 5s linear infinite;
+    font-weight: 600;
+}
+
+.grade{
+    font-size: 0.8rem;
+    color: #fff;
+    margin-top: 0.5rem;
+    font-weight: 600;
 }
