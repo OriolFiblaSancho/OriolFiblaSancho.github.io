@@ -122,9 +122,6 @@ html {
 
 body {
     background-color: #121212; /* Dark base color */
-    background-image: url(/assets/noise.gif);
-    background-blend-mode: overlay; /* This blends the noise with the background color */
-    background-size: 200px; /* Optional: control the size of the noise pattern */
     opacity: 1; /* Control the overall opacity */
     overflow-x: hidden;
     margin-top: 50px;
@@ -607,7 +604,6 @@ main {
     /* Contenedor para las tarjetas de proyectos */
     #projects .projects-container {
         display: flex;
-        justify-content: space-between;
         gap: 1.5rem;
         width: 100%;
         flex-wrap: wrap;
@@ -1155,6 +1151,8 @@ main {
     #text_profile {
         padding-top: 0;
         text-align: center; /* Center text for mobile */
+        width: 110%;
+
     }
 
     .top-content {
@@ -1220,8 +1218,31 @@ main {
         padding: 0.5rem;
     }
 
-    .education-items{
-        width: 45%;
+    #education .education-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #education .education-container::before {
+        left: 10%;
+        top: 2%;
+        width: 4px;
+        height: 90%;
+        z-index: 0;
+    }
+
+    .education-item::before {
+        top: 50%;
+        left: 7.5%;
+    }
+
+    .education-title{
+        margin: 0;
+    }
+
+    .institution {
+        padding: 0;
+        margin: 0;
     }
 
     #about_me {
@@ -1240,6 +1261,11 @@ main {
         grid-column: 1 / -1;
         grid-row: 8 / 9;
         padding: 0.5rem;
+    }
+
+    .email-container {
+        flex-direction: column;
+        gap: 1rem;
     }
 
 
